@@ -132,3 +132,59 @@ function dlog {
 		echo "No d.log found."
 	fi
 }
+
+###
+ # New Plugin.
+ #
+ # E.g: new-plugin my-plugin "My Plugin"
+ #
+ # @since Monday, April 30, 2018
+ ##
+function new-plugin {
+
+	if [ '--help' == "$1" ]; then
+		echo "Usage: new-plugin [plugin-name] [Real Plugin Name]" && return;
+	fi
+
+	# $1 and $2 are required.
+	if [ -z "$1" ]; then
+		echo 'Sorry, you must supply a programmatic plugin name, e.g. my-plugin-name as the first parameter.' && return
+	fi
+
+	if [ -z "$2" ]; then
+		echo 'Sorry, but you must supply a real plugin name e.g. My Plugin Name as the seconds parameter.' && return
+	fi
+
+	# Get the different versions of the plugin name.
+	program_plugin_name="$1";
+	real_plugin_name="$2";
+	namespaced_program_plugin_name=$(php -r "echo str_replace( ' ', '', ucwords( str_replace( '-', ' ', '$program_plugin_name' ) ) );");
+
+	# If a folder exists, bail.
+	if [ -e "$program_plugin_name" ]; then
+		echo "Sorry, but the folder $program_plugin_name already exists!" && return;
+	fi
+
+	# Clone the repo for new plugin and get into that folder.
+	git clone https://github.com/aubreypwd/wp-plugin-boilerplate "./$program_plugin_name"
+	cd "$program_plugin_name" || return
+
+	# Rename the plugin file.
+	mv "plugin-name.php" "$program_plugin_name.php"
+
+	# Remove git stuffs.
+	trash .git*
+
+	# Do replacements :D:D:D:D.
+	find ./ -type f -exec sed -i '' -e "s/YourPluginName/$namespaced_program_plugin_name/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/PluginName/$real_plugin_name/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/plugin-name/$program_plugin_name/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/YourCompanyName/WebDevStudios/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/your-company/webdevstudios/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/NEXT/1.0.0/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/Your Name/Aubrey Portwood <aubrey@webdevstudios.com>/" {} \;
+	find ./ -type f -exec sed -i '' -e "s/example.com/webdevstudios.com/" {} \;
+
+	# Get back to our folder.
+	cd ..
+}
