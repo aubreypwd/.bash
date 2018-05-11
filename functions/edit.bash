@@ -7,12 +7,12 @@
  ##
 
 ###
- # Easy way to run below commands.
+ # My Editor
  #
- # @since 3/11/17
+ # @since Friday, May 11, 2018
  ##
-function edit {
-	"edit-$1"
+function edit() {
+	code "$1"
 }
 
 ###
@@ -26,7 +26,7 @@ function edit-snippets {
 	file="$HOME/Library/Application Support/Sublime Text 3/Packages/User/Snippets"
 
 	if [ -e "$file" ]; then
-		subl "$file"
+		edit "$file"
 	else
 		echo "Couldn't find $file"
 	fi
@@ -41,7 +41,7 @@ function edit-snippets {
  ##
 function edit-files {
 	if [ -s ~/.files ]; then
-		subl ~/.files
+		edit ~/.files
 	fi
 }
 
@@ -57,7 +57,7 @@ function edit-bash {
 	file="$HOME/.icloud/Bash";
 
 	if [ -e "$file" ]; then
-		subl "$file"
+		edit "$file"
 	else
 		echo "Couldn't find $file"
 	fi
@@ -74,7 +74,7 @@ function edit-hosts {
 	file="/etc/hosts"
 
 	if [ -e "$file" ]; then
-		sudo subl "$file"
+		sudo edit "$file"
 	else
 		echo "Couldn't find $file"
 	fi
