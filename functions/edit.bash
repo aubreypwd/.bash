@@ -1,18 +1,18 @@
 #!/bin/bash
 
 ###
- # Edit commands that opens things in editors.
+ # Edit commands that opens things in edits.
  #
  # @since 3/11/17 Move to it's own file from functions.bash.
  ##
 
 ###
- # My Editor
+ # My edit
  #
  # @since Friday, May 11, 2018
  ##
-function edit() {
-	code "$1"
+function edit {
+	subl "$1"
 }
 
 ###
@@ -74,7 +74,7 @@ function edit-hosts {
 	file="/etc/hosts"
 
 	if [ -e "$file" ]; then
-		sudo edit "$file"
+		edit "$file"
 	else
 		echo "Couldn't find $file"
 	fi
