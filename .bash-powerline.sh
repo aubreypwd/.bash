@@ -121,8 +121,8 @@ __powerline() {
         PS1+="./$PWD "
         PS1+="$(__git_info) $FG_RED"
             # PS1+="\n"
-            PS1+="〉$FG_GREEN"
-            PS1+="〉$FG_CYAN"
+            # PS1+="〉$FG_GREEN"
+            # PS1+="〉$FG_CYAN"
         PS1+="〉$FG_BASE03\$ $RESET"
     }
 
