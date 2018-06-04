@@ -54,7 +54,7 @@ function edit-files {
  # @since 12/15/16 Now it edits all the files in /bash.s
  ##
 function edit-bash {
-	file="$HOME/.icloud/Bash";
+	file="$HOME/Bash";
 
 	if [ -e "$file" ]; then
 		edit "$file"
