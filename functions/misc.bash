@@ -299,3 +299,12 @@ function po2mo {
 function svn-addremove {
 	svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 }
+
+###
+ # Run gittower.
+ #
+ # @since Monday, June 4, 2018
+ ##
+function t {
+	gittower ./
+}
