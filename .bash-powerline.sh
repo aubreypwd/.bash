@@ -95,7 +95,7 @@ __powerline() {
         GIT_SEP=""
 
         # print the git branch segment without a trailing newline
-        echo "$FG_BASE03$GIT_SEP$FG_YELLOW$GIT_BRANCH_SYMBOL$FG_BASE03$branch$marks"
+        echo "$FG_BASE03$GIT_SEP$FG_BASE03$GIT_BRANCH_SYMBOL$FG_BASE03$branch$FG_BASE03$marks"
     }
 
     ps1() {
@@ -123,7 +123,8 @@ __powerline() {
             # PS1+="\n"
             # PS1+="〉$FG_GREEN"
             # PS1+="〉$FG_CYAN"
-        PS1+="〉$FG_BASE03\$ $RESET"
+        # PS1+="〉$FG_BASE03\$ $RESET"
+        PS1+="$FG_ORANGE\$ $RESET"
     }
 
     PROMPT_COMMAND=ps1
