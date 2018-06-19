@@ -308,3 +308,13 @@ function svn-addremove {
 function t {
 	gittower ./
 }
+
+###
+ # Fix this typo.
+ #
+ # @since Friday, June 8, 2018
+ ##
+function tower. {
+	gittower ./
+}
+

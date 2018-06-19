@@ -11,6 +11,7 @@ source ~/Bash/functions/wp.bash    # WP related stuff.
 source ~/Bash/functions/misc.bash  # Misc stuff.
 source ~/Bash/functions/edit.bash  # edit- command stuff.
 source ~/Bash/functions/files.bash  # Files stuff.
+source ~/Bash/functions/slack.bash  # Files stuff.
 
 ###
  # Another easy way to exit.
