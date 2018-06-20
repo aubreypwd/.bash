@@ -9,12 +9,23 @@
 ###
  # I'm working.
  #
+ # E.g.
+ #     working (Just set my status)
+ #     working "Doing something important." (Add a note to my status)
+ #     working "Doing something important." internal.chat (Also start a timer for this alias with the note)
+ #
  # @since Tuesday, June 19, 2018
  ##
 function working {
 	# /status :matrix: Working/Delayed Response.
 	slack presence active > /dev/null 2>&1
 	slack status edit --text "Working/Delayed Response. $1" --emoji :matrix: > /dev/null 2>&1
+
+	if [ -n "$2" ]; then
+
+		# Run doing "$1" @
+		doing "$2" "$1"
+	fi
 }
 
 ###
@@ -52,11 +63,22 @@ function afk {
 ###
  # I'm on a call!
  #
+ # E.g.
+ #     call (just set my status)
+ #     call "On a call with Ben" (add a note to my status)
+ #     call "On a call with Ashley" devblogs.chat (Also start a timer for this alias with a note)
+ #
  # @since Wednesday, June 20, 2018
  ##
 function call {
 	slack presence away > /dev/null 2>&1
 	slack status edit --text "Internal/Client Call. $1" --emoji :phone: > /dev/null 2>&1
+
+	if [ -n "$3" ]; then
+
+		# Run doing "$1" @
+		doing "$2" "$1"
+	fi
 }
 
 ###
@@ -67,4 +89,5 @@ function call {
 function off {
 	slack presence away > /dev/null 2>&1
 	slack status edit --text "Off for the day. $1" --emoji :night_with_stars: > /dev/null 2>&1
+	stop # Stop all timers
 }
