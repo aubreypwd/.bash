@@ -40,12 +40,23 @@ function available {
 ###
  # I'm here.
  #
+ # E.g.
+ #     here (just set my status)
+ #     here "Just sitting around doing nothing." (add note to my status)
+ #     here "Figuring out what to do" internal.chat (Also start a tracker with my note)
+ #
  # @since Tuesday, June 19, 2018
  ##
 function here {
 	# /status :ducttape: Available.
 	slack presence active > /dev/null 2>&1
 	slack status edit --text "Available. $1" --emoji :ducttape: > /dev/null 2>&1
+
+	if [ -n "$2" ]; then
+
+		# Run doing "$1" @
+		doing "$2" "$1"
+	fi
 }
 
 ###
@@ -74,7 +85,7 @@ function call {
 	slack presence away > /dev/null 2>&1
 	slack status edit --text "Internal/Client Call. $1" --emoji :phone: > /dev/null 2>&1
 
-	if [ -n "$3" ]; then
+	if [ -n "$2" ]; then
 
 		# Run doing "$1" @
 		doing "$2" "$1"
