@@ -18,6 +18,15 @@ function working {
 }
 
 ###
+ # Wrapper for here().
+ #
+ # @since Wednesday, June 20, 2018
+ ##
+function available {
+	here "$1"
+}
+
+###
  # I'm here.
  #
  # @since Tuesday, June 19, 2018
