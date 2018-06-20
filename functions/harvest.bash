@@ -14,6 +14,7 @@
 function downtime {
 	available
 	hcl @downtime "$1".
+	here # I must be available.
 }
 
 ###
