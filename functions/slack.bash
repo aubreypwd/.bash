@@ -50,7 +50,7 @@ function available {
 function here {
 	# /status :ducttape: Available.
 	slack presence active > /dev/null 2>&1
-	slack status edit --text "Available. $1" --emoji :ducttape: > /dev/null 2>&1
+	slack status edit --text "Available. ($1)" --emoji :ducttape: > /dev/null 2>&1
 
 	if [ -n "$2" ]; then
 
@@ -68,7 +68,7 @@ function afk {
 	# /status :brb: Lunch/Coffee BRB.
 	hcl stop # Stop Harvest.
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "AFK; Lunch/Coffee/Break BRB. $1" --emoji :brb: > /dev/null 2>&1
+	slack status edit --text "AFK; Lunch/Coffee/Break BRB. ($1)" --emoji :brb: > /dev/null 2>&1
 }
 
 ###
@@ -83,7 +83,7 @@ function afk {
  ##
 function call {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Internal/Client Call. $1" --emoji :phone: > /dev/null 2>&1
+	slack status edit --text "Internal/Client Call. ($1)" --emoji :phone: > /dev/null 2>&1
 
 	if [ -n "$2" ]; then
 
@@ -99,6 +99,6 @@ function call {
  ##
 function off {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Off for the day. $1" --emoji :night_with_stars: > /dev/null 2>&1
+	slack status edit --text "Off for the day. ($1)" --emoji :night_with_stars: > /dev/null 2>&1
 	stop # Stop all timers
 }
