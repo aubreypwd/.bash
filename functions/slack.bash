@@ -57,5 +57,5 @@ function call {
  ##
 function off {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Off for the day, see you tomorrow. $1" --emoji :night_with_stars: > /dev/null 2>&1
+	slack status edit --text "Off for the day. $1" --emoji :night_with_stars: > /dev/null 2>&1
 }
