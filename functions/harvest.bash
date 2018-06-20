@@ -13,7 +13,7 @@
  ##
 function downtime {
 	available
-	hcl @downtime Misc downtime.
+	hcl @downtime "$1".
 }
 
 ###
@@ -23,4 +23,22 @@ function downtime {
  ##
 function stop {
 	hcl stop
+}
+
+###
+ # Wrapper for hcl.
+ #
+ # @since Wednesday, June 20, 2018
+ ##
+function h {
+	hcl "$1" "$2" "$3" "$4" "$5"
+}
+
+###
+ # Wrapper for hcl note "...".
+ #
+ # @since Wednesday, June 20, 2018
+ ##
+function note {
+	h note "$1"
 }
