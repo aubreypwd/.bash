@@ -37,7 +37,7 @@ function afk {
 	# /status :brb: Lunch/Coffee BRB.
 	hcl stop # Stop Harvest.
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Lunch/Coffee BRB. $1" --emoji :brb: > /dev/null 2>&1
+	slack status edit --text "AFK; Lunch/Coffee/Break BRB. $1" --emoji :brb: > /dev/null 2>&1
 }
 
 ###
