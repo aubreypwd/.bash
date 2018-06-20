@@ -19,7 +19,7 @@
 function working {
 	# /status :matrix: Working/Delayed Response.
 	slack presence active > /dev/null 2>&1
-	slack status edit --text "Working/Delayed Response. $1" --emoji :matrix: > /dev/null 2>&1
+	slack status edit --text "Working/Delayed Response. ($1)" --emoji :matrix: > /dev/null 2>&1
 
 	if [ -n "$2" ]; then
 
