@@ -49,3 +49,13 @@ function call {
 	slack presence away > /dev/null 2>&1
 	slack status edit --text "Internal/Client Call. $1" --emoji :phone: > /dev/null 2>&1
 }
+
+###
+ # Off for the night.
+ #
+ # @since Wednesday, June 20, 2018
+ ##
+function off {
+	slack presence away > /dev/null 2>&1
+	slack status edit --text "Off for the day, see you tomorrow. $1" --emoji :night_with_stars: > /dev/null 2>&1
+}
