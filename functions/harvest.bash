@@ -7,17 +7,6 @@
  ##
 
 ###
- # Start downtime timer.
- #
- # @since Wednesday, June 20, 2018
- ##
-function downtime {
-	available
-	hcl @downtime "$1".
-	here # I must be available.
-}
-
-###
  # Stop timer.
  #
  # @since Wednesday, June 20, 2018
@@ -44,7 +33,7 @@ function h {
  # @since Wednesday, June 20, 2018
  ##
 function doing {
-	hcl @"$1" "$2"
+	hcl @"$2" "$1"
 }
 
 ###

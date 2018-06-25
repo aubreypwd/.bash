@@ -19,7 +19,8 @@
 function working {
 	# /status :matrix: Working/Delayed Response.
 	slack presence active > /dev/null 2>&1
-	slack status edit --text "Working/Delayed Response. ($1)" --emoji :matrix: > /dev/null 2>&1
+	slack status edit --text "Working/Delayed Response. $1" --emoji :matrix: > /dev/null 2>&1
+	echo "Status set."
 
 	if [ -n "$2" ]; then
 
@@ -50,7 +51,8 @@ function available {
 function here {
 	# /status :ducttape: Available.
 	slack presence active > /dev/null 2>&1
-	slack status edit --text "Available. ($1)" --emoji :ducttape: > /dev/null 2>&1
+	slack status edit --text "Available. $1" --emoji :ducttape: > /dev/null 2>&1
+	echo "Status set."
 
 	if [ -n "$2" ]; then
 
@@ -62,13 +64,32 @@ function here {
 ###
  # I'm afk.
  #
+ # E.g.
+ #     afk (set status away and stop all tracking.)
+ #     afk "Doing something." (set status away and append message.)
+ #     afk --kt|keeptracking (set status away and keep tracker going.)
+ #     afk "Doing something" --kt|keeptracking (set status away, append message and keep tracker going.)
+ #
  # @since Tuesday, June 19, 2018
  ##
 function afk {
+
 	# /status :brb: Lunch/Coffee BRB.
-	hcl stop # Stop Harvest.
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "AFK; Lunch/Coffee/Break BRB. ($1)" --emoji :brb: > /dev/null 2>&1
+	slack status edit --text "AFK; Lunch/Coffee/Break BRB. $1" --emoji :brb: > /dev/null 2>&1
+
+	if [ "$1" != '--keeptracking' ] &&
+		 [ "$1" != '--kt' ] &&
+		 [ "$2" != '--keeptracking' ] &&
+		 [ "$2" != '--kt' ];
+		 	then
+			hcl stop # Stop Harvest.
+			echo "Tracking stopped."
+	else
+		echo "Still tracking."
+	fi
+
+	echo "Status set."
 }
 
 ###
@@ -83,7 +104,8 @@ function afk {
  ##
 function call {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Internal/Client Call. ($1)" --emoji :phone: > /dev/null 2>&1
+	slack status edit --text "Internal/Client Call. $1" --emoji :phone: > /dev/null 2>&1
+	echo "Status set."
 
 	if [ -n "$2" ]; then
 
@@ -99,6 +121,7 @@ function call {
  ##
 function off {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Off for the day. ($1)" --emoji :night_with_stars: > /dev/null 2>&1
+	slack status edit --text "Off for the day. $1" --emoji :night_with_stars: > /dev/null 2>&1
 	stop # Stop all timers
+	echo "Status set."
 }
