@@ -301,15 +301,6 @@ function svn-addremove {
 }
 
 ###
- # Run gittower.
- #
- # @since Monday, June 4, 2018
- ##
-function t {
-	gittower ./
-}
-
-###
  # Fix this typo.
  #
  # @since Friday, June 8, 2018

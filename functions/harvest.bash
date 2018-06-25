@@ -16,15 +16,6 @@ function stop {
 }
 
 ###
- # Wrapper for hcl.
- #
- # @since Wednesday, June 20, 2018
- ##
-function h {
-	hcl "$1" "$2" "$3" "$4" "$5"
-}
-
-###
  # Easy way to update harvest on what I'm doing.
  #
  # Uses an alias, e.g. doing maintainn.chat "Chatting..."
@@ -32,7 +23,7 @@ function h {
  #
  # @since Wednesday, June 20, 2018
  ##
-function doing {
+function track {
 	hcl @"$2" "$1"
 }
 
@@ -42,5 +33,5 @@ function doing {
  # @since Wednesday, June 20, 2018
  ##
 function note {
-	h note "$1"
+	hcl note "$1"
 }

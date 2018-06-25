@@ -24,8 +24,8 @@ function working {
 
 	if [ -n "$2" ]; then
 
-		# Run doing "$1" @
-		doing "$2" "$1"
+		# Run track "$1" @
+		track "$2" "$1"
 	fi
 }
 
@@ -43,7 +43,7 @@ function available {
  #
  # E.g.
  #     here (just set my status)
- #     here "Just sitting around doing nothing." (add note to my status)
+ #     here "Just sitting around nothing." (add note to my status)
  #     here "Figuring out what to do" internal.chat (Also start a tracker with my note)
  #
  # @since Tuesday, June 19, 2018
@@ -56,8 +56,8 @@ function here {
 
 	if [ -n "$2" ]; then
 
-		# Run doing "$1" @
-		doing "$2" "$1"
+		# Run track "$1" @
+		track "$2" "$1"
 	fi
 }
 
@@ -77,19 +77,20 @@ function afk {
 	# /status :brb: Lunch/Coffee BRB.
 	slack presence away > /dev/null 2>&1
 	slack status edit --text "AFK; Lunch/Coffee/Break BRB. $1" --emoji :brb: > /dev/null 2>&1
-
-	if [ "$1" != '--keeptracking' ] &&
-		 [ "$1" != '--kt' ] &&
-		 [ "$2" != '--keeptracking' ] &&
-		 [ "$2" != '--kt' ];
-		 	then
-			hcl stop # Stop Harvest.
-			echo "Tracking stopped."
-	else
-		echo "Still tracking."
-	fi
-
 	echo "Status set."
+
+	if [ "$1" = '--keeptracking' ] ||
+			 [ "$1" = '--kt' ]  ||
+		 [ "$2" = '--keeptracking' ] ||
+			 [ "$2" = '--kt' ]  ||
+		 [ "$3" = '--keeptracking' ] ||
+			 [ "$3" = '--kt' ]
+		 	then
+			echo "Still tracking."
+	else
+			hcl stop # Stop Harvest trackers.
+			echo "Tracking stopped."
+	fi
 }
 
 ###
@@ -109,8 +110,8 @@ function call {
 
 	if [ -n "$2" ]; then
 
-		# Run doing "$1" @
-		doing "$2" "$1"
+		# Run track "$1" @
+		track "$2" "$1"
 	fi
 }
 
