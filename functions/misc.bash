@@ -309,3 +309,11 @@ function tower. {
 	gittower ./
 }
 
+###
+ # Test performance of a url.
+ #
+ # @since Monday, June 25, 2018
+ ##
+function perform {
+	curl -o /dev/null -s -w 'Total: %{time_total}\n' "$1"
+}

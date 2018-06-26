@@ -11,6 +11,3 @@ alias ls='ls -laGFh';
 
 # Git Tower.
 alias tower='gittower'
-
-# Harvest Tracker.
-alias h='hcl'.

@@ -12,7 +12,7 @@
  # E.g.
  #     working (Just set my status)
  #     working "Doing something important." (Add a note to my status)
- #     working "Doing something important." internal.chat (Also start a timer for this alias with the note)
+ #     working "Doing something important." @internal.chat (Also start a timer for this alias with the note)
  #
  # @since Tuesday, June 19, 2018
  ##
@@ -25,7 +25,7 @@ function working {
 	if [ -n "$2" ]; then
 
 		# Run track "$1" @
-		track "$2" "$1"
+		hcl "$2" "$1"
 	fi
 }
 
@@ -44,7 +44,7 @@ function available {
  # E.g.
  #     here (just set my status)
  #     here "Just sitting around nothing." (add note to my status)
- #     here "Figuring out what to do" internal.chat (Also start a tracker with my note)
+ #     here "Figuring out what to do" @internal.chat (Also start a tracker with my note)
  #
  # @since Tuesday, June 19, 2018
  ##
@@ -57,7 +57,7 @@ function here {
 	if [ -n "$2" ]; then
 
 		# Run track "$1" @
-		track "$2" "$1"
+		hcl "$2" "$1"
 	fi
 }
 
@@ -94,12 +94,24 @@ function afk {
 }
 
 ###
+ # Wrapper for hcl (make it act like the rest here).
+ #
+ # E.g.
+ #     h "Note." @internal.chat (start a timer for @internal.chat with this note.)
+ #
+ # @since Tuesday, June 26, 2018
+ ##
+function h {
+	hcl "$2" "$1"
+}
+
+###
  # I'm on a call!
  #
  # E.g.
  #     call (just set my status)
  #     call "On a call with Ben" (add a note to my status)
- #     call "On a call with Ashley" devblogs.chat (Also start a timer for this alias with a note)
+ #     call "On a call with Ashley" @devblogs.chat (Also start a timer for this alias with a note)
  #
  # @since Wednesday, June 20, 2018
  ##
@@ -111,7 +123,7 @@ function call {
 	if [ -n "$2" ]; then
 
 		# Run track "$1" @
-		track "$2" "$1"
+		hcl "$2" "$1"
 	fi
 }
 
@@ -125,4 +137,35 @@ function off {
 	slack status edit --text "Off for the day. $1" --emoji :night_with_stars: > /dev/null 2>&1
 	stop # Stop all timers
 	echo "Status set."
+}
+
+###
+ # Set custom status message for slack.
+ #
+ # E.g.
+ #     status away "Away." brb (sets to away, sets text status, and :brb: emoji).
+ #     status here "Doing something." ducttape @internal.chat
+ #
+ # @since Tuesday, June 26, 2018
+ ##
+function status {
+	if [ "$1" = 'away' ]; then
+		slack presence away > /dev/null 2>&1
+	else
+		slack presence active > /dev/null 2>&1
+	fi
+
+	if [ -n "$2" ]; then
+		if [ -n "$3" ]; then
+			slack status edit --text "$2" --emoji :"$3": > /dev/null 2>&1
+		else
+			slack status edit --text "$2" --emoji :ducttape: > /dev/null 2>&1
+		fi
+
+		if [ -n "$4" ]; then
+
+			# Run track "$1" @
+			hcl "$2" "$4"
+		fi
+	fi
 }
