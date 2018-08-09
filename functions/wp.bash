@@ -39,12 +39,12 @@ function wp-debug {
 		fi;
 	fi
 
-	if [ -e ./debug.log ]; then
-		clear
-		tail -n "$LINES" -f "debug.log"
-	else
-		echo "No debug.log found."
+	if ! [ -e ./debug.log ]; then
+		touch "debug.log"
 	fi
+
+	clear
+	tail -n "$LINES" -f "debug.log"
 }
 
 ###
