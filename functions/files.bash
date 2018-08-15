@@ -104,3 +104,12 @@ function public {
 function wp-content {
 	public && cd "wp-content" || return
 }
+
+###
+ # Delete permanently.
+ #
+ # @since Wednesday, August 15, 2018
+ ##
+function delete {
+	rm -Rf "$1"
+}
