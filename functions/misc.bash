@@ -317,3 +317,15 @@ function tower. {
 function perform {
 	curl -o /dev/null -s -w 'Total: %{time_total}\n' "$1"
 }
+
+###
+ # Open a LBF site in Sublime.
+ #
+ # @since Tuesday, September 4, 2018
+ #
+ # E.g: dev
+ ##
+function dev {
+	dir "$HOME/Local Sites"
+	subl ./
+}
