@@ -458,3 +458,13 @@ function regit {
 		echo "$location does not exist, you must not have ungit."
 	fi
 }
+
+###
+ # Show tags and their commits.
+ # E.g: git-tags
+ #
+ # @since Sep 10, 2018
+ ##
+function git-tags {
+	git show-ref --tags
+}
