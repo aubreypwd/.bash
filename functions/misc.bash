@@ -131,8 +131,11 @@ function svn-addremove {
  #
  # @since 4/5/16
  ##
-function dns-flush {
-	sudo dscacheutil -flushcache && killall -HUP mDNSResponder
+function flush-dns {
+	sudo echo "🚽"
+	sudo dscacheutil -flushcache
+	sudo killall -HUP mDNSResponder
+	echo "Done"
 }
 
 ###
