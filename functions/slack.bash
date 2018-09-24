@@ -67,8 +67,8 @@ function here {
  # E.g.
  #     afk (set status away and stop all tracking.)
  #     afk "Doing something." (set status away and append message.)
- #     afk --kt|keeptracking (set status away and keep tracker going.)
- #     afk "Doing something" --kt|keeptracking (set status away, append message and keep tracker going.)
+ #     afk --stop-tracking|stop (set status away, append message and keep tracker going.)
+ #     afk "Doing something" --kt|stop (set status away and keep tracker going.)
  #
  # @since Tuesday, June 19, 2018
  ##
@@ -79,17 +79,17 @@ function afk {
 	slack status edit --text "AFK; Lunch/Coffee/Break BRB. $1" --emoji :brb: > /dev/null 2>&1
 	echo "Status set."
 
-	if [ "$1" = '--keeptracking' ] ||
-			 [ "$1" = '--kt' ]  ||
-		 [ "$2" = '--keeptracking' ] ||
-			 [ "$2" = '--kt' ]  ||
-		 [ "$3" = '--keeptracking' ] ||
-			 [ "$3" = '--kt' ]
+	if [ "$1" = '--stop' ] ||
+			 [ "$1" = '--stop-tracking' ]  ||
+		 [ "$2" = '--stop' ] ||
+			 [ "$2" = '--stop-tracking' ]  ||
+		 [ "$3" = '--stop' ] ||
+			 [ "$3" = '--stop-tracking' ]
 		 	then
-			echo "Still tracking."
+				hcl stop # Stop Harvest trackers.
+				echo "Tracking stopped."
 	else
-			hcl stop # Stop Harvest trackers.
-			echo "Tracking stopped."
+			echo "Still tracking."
 	fi
 }
 
