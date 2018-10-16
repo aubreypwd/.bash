@@ -237,11 +237,14 @@ function install {
 ###
  # Pulls files to destination.
  #
- # E.g: rsync-down username@domain:/var/www/ /var/www
- #
  # @since 4/5/16
  ##
 function rsync-down {
+	if [ '--help' == "$1" ]; then
+		echo "Usage: rsync-down username@domain:[/var/www: Remote Folder] [/var/www: Local Folder]"
+		return;
+	fi
+
 	rsync -az --progress -e ssh "$1" "$2"
 }
 
