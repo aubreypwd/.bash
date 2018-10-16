@@ -245,7 +245,7 @@ function rsync-down {
 		return;
 	fi
 
-	rsync -az --progress -e ssh "$1" "$2"
+	rsync -avzh --progress -e ssh "$1" "$2"
 }
 
 ###
@@ -259,7 +259,7 @@ function rsync-up {
 		return;
 	fi
 
-	rsync -avz --progress "$1" -e ssh "$2"
+	rsync -avzh --progress "$1" -e ssh "$2"
 }
 
 ###
