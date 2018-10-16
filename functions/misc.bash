@@ -251,11 +251,14 @@ function rsync-down {
 ###
  # Sends files up to location.
  #
- # E.g: rsync-up /var/www/ username@domain:/var/www/
- #
  # @since 4/5/16
  ##
 function rsync-up {
+	if [ '--help' == "$1" ]; then
+		echo "Usage: rsync-up [/var/www: Local Folder] username@domain:[/var/www: Remote Folder]"
+		return;
+	fi
+
 	rsync -avz --progress "$1" -e ssh "$2"
 }
 
