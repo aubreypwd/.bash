@@ -17,7 +17,6 @@
  # @since Tuesday, June 19, 2018
  ##
 function working {
-	# /status :computer: Working/Delayed Response.
 	slack presence active > /dev/null 2>&1
 	slack status edit --text "Working/Delayed Response. $1" --emoji :computer: > /dev/null 2>&1
 	echo "Status set."
@@ -49,9 +48,8 @@ function available {
  # @since Tuesday, June 19, 2018
  ##
 function here {
-	# /status :ducttape: Available.
 	slack presence active > /dev/null 2>&1
-	slack status edit --text "Available. $1" > /dev/null 2>&1
+	slack status edit --text "Available. $1" --emoji :aubreypwd: > /dev/null 2>&1
 	echo "Status set."
 
 	if [ -n "$2" ]; then
@@ -134,7 +132,7 @@ function call {
  ##
 function off {
 	slack presence away > /dev/null 2>&1
-	slack status edit --text "Off for the day. $1" --emoji :wave: > /dev/null 2>&1
+	slack status edit --text "Off for the day. $1" --emoji :aubreypwd-offline: > /dev/null 2>&1
 	stop # Stop all timers
 	echo "Status set."
 }
