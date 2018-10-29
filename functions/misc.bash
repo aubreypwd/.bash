@@ -338,3 +338,12 @@ function dev {
 	dir "$HOME/Local Sites"
 	subl ./
 }
+
+###
+ # Remove all composer packages.
+ #
+ # @since Monday, October 29, 2018
+ ##
+function composer-uninstall {
+	php "$HOME/Repos/code/composer-uninstall/composer-uninstall.php"
+}

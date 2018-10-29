@@ -92,18 +92,6 @@ function afk {
 }
 
 ###
- # Wrapper for hcl (make it act like the rest here).
- #
- # E.g.
- #     h "Note." @internal.chat (start a timer for @internal.chat with this note.)
- #
- # @since Tuesday, June 26, 2018
- ##
-function h {
-	hcl "$2" "$1"
-}
-
-###
  # I'm on a call!
  #
  # E.g.
