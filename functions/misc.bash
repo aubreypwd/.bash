@@ -347,3 +347,16 @@ function dev {
 function composer-uninstall {
 	php "$HOME/Repos/code/composer-uninstall/composer-uninstall.php"
 }
+
+###
+ # Compress video.
+ #
+ # @since Tuesday, November 6, 2018
+ #
+ # E.g:  compress-video *.mov
+ ##
+function compress-video {
+	f=$(basename -- "$1")
+	e="${f##*.}"
+	/usr/local/bin/ffmpeg -i "$1" -vcodec libx264 -crf 20 -y "$1-compressed.$e"
+}
