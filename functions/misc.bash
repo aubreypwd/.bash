@@ -349,6 +349,17 @@ function composer-uninstall {
 }
 
 ###
+ # Re-install composer assets.
+ #
+ # @since  Wednesday, November 7, 2018
+ ##
+function composer-reinstall {
+	composer-uninstall
+	composer clear-cache
+	composer install
+}
+
+###
  # Compress video.
  #
  # @since Tuesday, November 6, 2018
