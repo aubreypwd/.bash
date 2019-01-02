@@ -371,3 +371,22 @@ function compress-video {
 	e="${f##*.}"
 	/usr/local/bin/ffmpeg -i "$1" -vcodec libx264 -crf 20 -y "$1-compressed.$e"
 }
+
+###
+ # Download audio from a youtube video.
+ #
+ # @since Wednesday, January 2, 2019
+ #
+ # E.g: youtube-mp3 "<video URL]"
+ ##
+function youtube-mp3 {
+	if ! [ -x "$(command -v youtube-dl)" ]; then
+		echo "Please run: brew install youtube-dl" && return
+	fi
+
+	if [ '--help' == "$1" ]; then
+		echo "Usage: youtube-video <video-url>" && return
+	fi
+
+	youtube-dl --extract-audio --audio-format mp3 "$1"
+}
