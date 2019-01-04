@@ -13,6 +13,7 @@ source ~/Bash/functions/edit.bash  # edit- command stuff.
 source ~/Bash/functions/files.bash  # Files stuff.
 source ~/Bash/functions/slack.bash  # Slack stuff.
 source ~/Bash/functions/harvest.bash  # Harvest stuff.
+source ~/Bash/functions/lbf.bash  # Local by Flywheel stuff.
 
 ###
  # Another easy way to exit.
