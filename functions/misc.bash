@@ -390,3 +390,32 @@ function youtube-mp3 {
 
 	youtube-dl --extract-audio --audio-format mp3 "$1"
 }
+
+###
+ # Clear out directories where files in them don't matter.
+ #
+ # E.g: clear [downloads|tmp]
+ #
+ # @since Monday, January 14, 2019
+ ##
+function clear {
+	if [ 'tmp' = "$1" ] || [ 'all' = "$1" ]; then
+
+		echo "Clearing (in background) ~/tmp/*..."
+		rm -Rf ~/tmp/* &>/dev/null
+
+		if [ 'all' != "$1" ]; then
+			return;
+		fi
+	fi
+
+	if [ 'downloads' = "$1" ] || [ 'all' = "$1" ]; then
+
+		echo "Clearing (in background) ~/Downloads/*..."
+		rm -Rf ~/Downloads/* &>/dev/null
+
+		if [ 'all' != "$1" ]; then
+			return;
+		fi
+	fi
+}
