@@ -402,7 +402,7 @@ function clear {
 	if [ 'tmp' = "$1" ] || [ 'all' = "$1" ]; then
 
 		echo "Clearing (in background) ~/tmp/*..."
-		rm -Rf ~/tmp/* &>/dev/null
+		nohup rm -Rf ~/tmp/* &>/dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
 			return;
@@ -412,7 +412,7 @@ function clear {
 	if [ 'downloads' = "$1" ] || [ 'all' = "$1" ]; then
 
 		echo "Clearing (in background) ~/Downloads/*..."
-		rm -Rf ~/Downloads/* &>/dev/null
+		nohup rm -Rf ~/Downloads/* &>/dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
 			return;
