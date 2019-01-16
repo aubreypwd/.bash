@@ -13,4 +13,5 @@ function lbf {
 	fi
 
 	if [ 'smb' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/SJDt9G2A7.sh; fi
+	if [ 'ms-365' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/H1uE90qC7.sh; fi
 }

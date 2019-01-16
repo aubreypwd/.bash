@@ -418,4 +418,14 @@ function clear {
 			return;
 		fi
 	fi
+
+	if [ 'trash' = "$1" ] || [ 'all' = "$1" ]; then
+
+		echo "Emptying Trash..."
+		nohup empty-trash &>/dev/null &> /dev/null
+
+		if [ 'all' != "$1" ]; then
+			return;
+		fi
+	fi
 }
