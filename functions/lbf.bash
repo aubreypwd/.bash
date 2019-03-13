@@ -15,4 +15,5 @@ function lbf {
 	if [ 'smb' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/SJDt9G2A7.sh; fi
 	if [ 'ms-365' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/H1uE90qC7.sh; fi
 	if [ 'discover-office' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/SkYUh_bx4.sh; fi
+	if [ 'discover-ms' == "$1" ]; then /Users/aubreypwd/Library/Application\ Support/Local\ by\ Flywheel/ssh-entry/BJLchuWx4.sh; fi
 }

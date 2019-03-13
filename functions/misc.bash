@@ -356,7 +356,7 @@ function composer-uninstall {
 function composer-reinstall {
 	composer-uninstall
 	composer clear-cache
-	composer install
+	composer install "$1"
 }
 
 ###
