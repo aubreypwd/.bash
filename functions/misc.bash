@@ -235,6 +235,35 @@ function install {
 }
 
 ###
+ # Re-install.
+ #
+ # Will remove node_modules, package.json, package.lock and re-install.
+ #
+ # E.g: reinstall
+ #
+ # @since Wednesday, March 27, 2019
+ ##
+function reinstall {
+	if [ -e 'node_modules' ]; then
+		echo "Removing node_modules..."
+		rm -Rf node_modules
+	fi
+
+	if [ -e 'package.lock' ]; then
+		echo "Removing package.lock..."
+		rm package.lock
+	fi
+
+	if [ -e 'package.json' ]; then
+		echo "Removing package.json..."
+		rm package.json
+	fi
+
+	echo "Re-installing..."
+	install "$@"
+}
+
+###
  # Pulls files to destination.
  #
  # @since 4/5/16
