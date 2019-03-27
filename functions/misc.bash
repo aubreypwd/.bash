@@ -254,11 +254,6 @@ function reinstall {
 		rm package.lock
 	fi
 
-	if [ -e 'package.json' ]; then
-		echo "Removing package.json..."
-		rm package.json
-	fi
-
 	echo "Re-installing..."
 	install "$@"
 }
