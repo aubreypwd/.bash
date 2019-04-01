@@ -81,5 +81,5 @@ function apply-patch {
  # @since Monday, April 1, 2019
  ##
 function make-patch {
-	git diff --no-prefix HEAD..master > "$1".patch
+	git diff --no-prefix master..HEAD > "$1".patch
 }
