@@ -115,9 +115,10 @@ __powerline() {
             PWD="$pwd_truncated..."
         fi
 
+        PWD="$(pwd)\n"
 
         PS1="\n"
-        PS1+="$FG_BASE03./$PWD $RESET"
+        PS1+="$FG_BASE03$PWD$RESET"
         PS1+="$(__git_info)"
         PS1+="$FG_BASE03\$ $RESET"
     }
