@@ -54,7 +54,7 @@ function edit-files {
  # @since 12/15/16 Now it edits all the files in /bash.s
  ##
 function edit-bash {
-	file="$HOME/Bash";
+	file="$HOME/.bash";
 
 	if [ -e "$file" ]; then
 		edit "$file"

@@ -6,14 +6,14 @@
  # @since 12/1/16 Move to it's own file.
  ##
 
-source ~/Bash/functions/git.bash   # Git stuff.
-source ~/Bash/functions/wp.bash    # WP related stuff.
-source ~/Bash/functions/misc.bash  # Misc stuff.
-source ~/Bash/functions/edit.bash  # edit- command stuff.
-source ~/Bash/functions/files.bash  # Files stuff.
-source ~/Bash/functions/slack.bash  # Slack stuff.
-source ~/Bash/functions/harvest.bash  # Harvest stuff.
-source ~/Bash/functions/lbf.bash  # Local by Flywheel stuff.
+source ~/.bash/functions/git.bash   # Git stuff.
+source ~/.bash/functions/wp.bash    # WP related stuff.
+source ~/.bash/functions/misc.bash  # Misc stuff.
+source ~/.bash/functions/edit.bash  # edit- command stuff.
+source ~/.bash/functions/files.bash  # Files stuff.
+source ~/.bash/functions/slack.bash  # Slack stuff.
+source ~/.bash/functions/harvest.bash  # Harvest stuff.
+source ~/.bash/functions/lbf.bash  # Local by Flywheel stuff.
 
 ###
  # Another easy way to exit.

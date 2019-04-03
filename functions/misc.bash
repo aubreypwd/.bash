@@ -453,3 +453,14 @@ function clear {
 		fi
 	fi
 }
+
+###
+ # Copy the current directory path.
+ #
+ # E.g:  cpwd
+ #
+ # @since Wednesday, April 3, 2019
+ ##
+function cpwd {
+	pwd | pbcopy
+}

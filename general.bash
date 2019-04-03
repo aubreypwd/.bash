@@ -7,20 +7,20 @@ export CLICOLOR=1
 export TERM="xterm-256color";
 
 #wp-cli
-source "$HOME/Bash/wp-completion.bash"
+source "$HOME/.bash/wp-completion.bash"
 
 # Default editor
 export EDITOR="vim +startinsert"
 
 # Git Aware!
-export GITAWAREPROMPT="$HOME/Bash/git-aware-prompt"
+export GITAWAREPROMPT="$HOME/.bash/git-aware-prompt"
 source "$GITAWAREPROMPT/main.sh";
 
-# Bash Power prompt.
-source "$HOME/Bash/.bash-powerline.sh" 2> /dev/null
+# .bash Power prompt.
+source "$HOME/.bash/.bash-powerline.sh" 2> /dev/null
 
 # Git completion.
-source "$HOME/Bash/git-completion.bash"
+source "$HOME/.bash/git-completion.bash"
 
 # Homebrew PHP.
 export PATH="/usr/local/sbin:$PATH"
