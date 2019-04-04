@@ -74,10 +74,10 @@ __powerline() {
         [ -n "$branch" ] || return  # git branch not found
 
         # Try and truncate the branch.
-        branch_truncated=$(sed 's/^\(.\{25\}\).*/\1/g' <<< "$branch")
-        if [ "$branch" != "$branch_truncated" ]; then
-            branch="$branch_truncated..."
-        fi
+        # branch_truncated=$(sed 's/^\(.\{25\}\).*/\1/g' <<< "$branch")
+        # if [ "$branch" != "$branch_truncated" ]; then
+            # branch="$branch_truncated..."
+        # fi
 
         local marks
 
@@ -97,13 +97,13 @@ __powerline() {
         GIT_REMOTE=$($git_eng config --get remote.origin.url)
 
         if ! [ -e $GIT_REMOTE ]; then
-        	GIT_REMOTE=" $FG_BLUE$GIT_REMOTE"
+        	GIT_REMOTE="$FG_YELLOW\n҉$RESET $FG_BLUE$GIT_REMOTE"
         else
         	GIT_REMOTE=""
         fi
 
         # print the git branch segment without a trailing newline
-        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$GIT_REMOTE$marks "
+        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$GIT_REMOTE$marks\n"
     }
 
     ps1() {
@@ -118,17 +118,16 @@ __powerline() {
         PWD="${PWD##*/}"
 
         # Try and truncate the folder name.
-        pwd_truncated=$(sed 's/^\(.\{25\}\).*/\1/g' <<< "$PWD")
-        if [ "$PWD" != "$pwd_truncated" ]; then
-            PWD="$pwd_truncated..."
-        fi
+        # pwd_truncated=$(sed 's/^\(.\{25\}\).*/\1/g' <<< "$PWD")
+        # if [ "$PWD" != "$pwd_truncated" ]; then
+            # PWD="$pwd_truncated..."
+        # fi
 
         PWD="$(pwd)\n"
-
         PS1="\n"
         PS1+="$FG_BASE03$PWD$RESET"
         PS1+="$(__git_info)"
-        PS1+="$FG_BASE03\$ $RESET"
+        PS1+="$FG_BASE03\$ >$RESET "
     }
 
     PROMPT_COMMAND=ps1
