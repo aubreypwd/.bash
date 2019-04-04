@@ -127,7 +127,7 @@ __powerline() {
         PS1="\n"
         PS1+="$FG_BASE03$PWD$RESET"
         PS1+="$(__git_info)"
-        PS1+="$FG_BASE03\$ >$RESET "
+        PS1+="$FG_BASE03  \$>$RESET "
     }
 
     PROMPT_COMMAND=ps1
