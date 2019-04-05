@@ -103,7 +103,7 @@ __powerline() {
         fi
 
         # print the git branch segment without a trailing newline
-        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$GIT_REMOTE$marks\n"
+        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$GIT_REMOTE$marks\n\n"
     }
 
     ps1() {
@@ -123,11 +123,11 @@ __powerline() {
             # PWD="$pwd_truncated..."
         # fi
 
-        PWD="$(pwd)\n"
+        PWD="\$ $(pwd)\n"
         PS1="\n"
         PS1+="$FG_BASE03$PWD$RESET"
         PS1+="$(__git_info)"
-        PS1+="$FG_BASE03\n>>	\$$RESET "
+        PS1+="$FG_BASE03>$RESET "
     }
 
     PROMPT_COMMAND=ps1
