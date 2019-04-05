@@ -9,6 +9,8 @@
  ##
 
 # Load partials.
+source "$HOME/.bash/vars.bash"
+source "$HOME/.bash/git.bash"
 source "$HOME/.bash/general.bash"
 source "$HOME/.bash/aliases.bash"
 source "$HOME/.bash/functions.bash"

@@ -17,7 +17,7 @@ export GITAWAREPROMPT="$HOME/.bash/git-aware-prompt"
 source "$GITAWAREPROMPT/main.sh";
 
 # .bash Power prompt.
-source "$HOME/.bash/.bash-powerline.sh" 2> /dev/null
+#source "$HOME/.bash/.bash-powerline.sh" 2> /dev/null
 
 # Git completion.
 source "$HOME/.bash/git-completion.bash"
@@ -27,3 +27,5 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Do SVN commits like Git.
 export SVN_EDITOR="vim +startinsert"
+
+PS1="\n$FG_BASE03>$RESET "

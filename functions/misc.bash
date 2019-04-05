@@ -464,3 +464,13 @@ function clear {
 function cpwd {
 	pwd | pbcopy
 }
+
+function ? {
+	PWDD=$(pwd)
+	echo "$FG_BASE03$PWDD$RESET"
+	__git_info
+}
+
+function cd {
+	builtin cd "$@" && ? && ls
+}
