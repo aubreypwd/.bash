@@ -17,7 +17,7 @@ export GITAWAREPROMPT="$HOME/.bash/git-aware-prompt"
 source "$GITAWAREPROMPT/main.sh";
 
 # .bash Power prompt.
-#source "$HOME/.bash/.bash-powerline.sh" 2> /dev/null
+source "$HOME/.bash/.bash-powerline.sh" 2> /dev/null
 
 # Git completion.
 source "$HOME/.bash/git-completion.bash"
