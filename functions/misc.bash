@@ -423,9 +423,13 @@ function youtube-mp3 {
  # @since Monday, January 14, 2019
  ##
 function clear {
+	if [ '' == "$1" ]; then
+		echo "Clear what: all, downloads, trash, tmp?" && return;
+	fi
+
 	if [ 'tmp' = "$1" ] || [ 'all' = "$1" ]; then
 
-		echo "Clearing (in background) ~/tmp/*..."
+		echo "Clearing ~/tmp/*..."
 		nohup rm -Rf ~/tmp/* &>/dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
@@ -435,7 +439,7 @@ function clear {
 
 	if [ 'downloads' = "$1" ] || [ 'all' = "$1" ]; then
 
-		echo "Clearing (in background) ~/Downloads/*..."
+		echo "Clearing ~/Downloads/*..."
 		nohup rm -Rf ~/Downloads/* &>/dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
@@ -445,7 +449,7 @@ function clear {
 
 	if [ 'trash' = "$1" ] || [ 'all' = "$1" ]; then
 
-		echo "Emptying Trash..."
+		echo "Emptying Trashes..."
 		nohup empty-trash &>/dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
