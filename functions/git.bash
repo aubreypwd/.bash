@@ -20,6 +20,18 @@ function branch {
 }
 
 ###
+ # Push and exit.
+ #
+ # E.g: px
+ #
+ # @since Tuesday, April 16, 2019
+ ##
+function px {
+	push
+	exit
+}
+
+###
  # Alias for git fetch --all.
  #
  # @since 7/6/17
