@@ -21,6 +21,10 @@ source ~/.bash/functions/lbf.bash  # Local by Flywheel stuff.
  # @since 5/13/16
  ##
 function x {
+	if [ -n "$1" ]; then
+		"$1" && exit;
+	fi
+
 	exit
 }
 
