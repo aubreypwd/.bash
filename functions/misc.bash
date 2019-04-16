@@ -469,6 +469,13 @@ function cpwd {
 	pwd | pbcopy
 }
 
+###
+ # Change Directory.
+ #
+ # E.g. cd
+ #
+ # @since Tuesday, April 16, 2019
+ ##
 function cd {
-	builtin cd "$@" ls
+	builtin cd "$@" && ls
 }
