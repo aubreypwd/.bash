@@ -83,3 +83,27 @@ function apply-patch {
 function make-patch {
 	git diff --no-prefix master..HEAD > "$1".patch
 }
+
+###
+ # An easy way to run wp search-replace.
+ #
+ # E.g: wpreplaced "example.com" "example.test" --url="example.com"
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function wpreplaced {
+	wp search-replace "$1" "$2" --network --all-tables --url="$1"
+}
+
+###
+ # A easy way to replace anything using wp search-replace.
+ #
+ # E.g: wpreplace "foo" "bar"
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function wpreplace {
+	wp search-replace "$1" "$2" --network --all-tables "$3" "$4" "$5" "$6"
+}
+
+
