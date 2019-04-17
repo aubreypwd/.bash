@@ -501,3 +501,14 @@ function myup {
 function mydown {
 	brew services stop mysql@5.7
 }
+
+###
+ # Easy way to restart MySQL.
+ #
+ # E.g: myrestart
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function myrestart {
+	brew services restart mysql@5.7
+}
