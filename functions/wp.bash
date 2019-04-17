@@ -106,4 +106,13 @@ function wpreplace {
 	wp search-replace "$1" "$2" --network --all-tables "$3" "$4" "$5" "$6"
 }
 
-
+###
+ # Easy way to set all user's passwords to `password`.
+ #
+ # E.g: wpdbpass
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function wpdbpass {
+	wp db query "UPDATE wp_users SET user_pass = '5f4dcc3b5aa765d61d8327deb882cf99';"
+}
