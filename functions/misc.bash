@@ -479,3 +479,25 @@ function cpwd {
 function cd {
 	builtin cd "$@" && ls
 }
+
+###
+ # Way to start MySQL.
+ #
+ # E.g: myup
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function myup {
+	brew services start mysql@5.7
+}
+
+###
+ # Way to stop MySQL
+ #
+ # E.g: mydown
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function mydown {
+	brew services stop mysql@5.7
+}
