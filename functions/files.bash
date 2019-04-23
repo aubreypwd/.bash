@@ -55,16 +55,28 @@ function dir {
 }
 
 ###
+ # Goto a Valet site.
+ #
+ # E.g: valet
+ #
+ # @since Tuesday, April 23, 2019
+ ##
+function valet {
+	cd "$HOME/Valet" || return
+	site "./"
+}
+
+###
  # Goto a site.
  #
  # @since Monday, March 19, 2018
  ##
 function site {
-	dir "$HOME/Local Sites"
+	dir "$1"
 
 	# Try and go to wp-content...
-	if [ -e "app/public/wp-content" ]; then
-		cd "app/public/wp-content" || return
+	if [ -e "wp-content" ]; then
+		cd "wp-content" || return
 
 		# Try and go to any other path they supply.
 		if [ -e "$1" ]; then
