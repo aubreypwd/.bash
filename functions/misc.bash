@@ -352,18 +352,6 @@ function perform {
 }
 
 ###
- # Open a LBF site in Sublime.
- #
- # @since Tuesday, September 4, 2018
- #
- # E.g: dev
- ##
-function dev {
-	dir "$HOME/Local Sites"
-	subl ./
-}
-
-###
  # Remove all composer packages.
  #
  # @since Monday, October 29, 2018
@@ -511,4 +499,16 @@ function mydown {
  ##
 function myrestart {
 	brew services restart mysql@5.7
+}
+
+###
+ # Easy way to restart valet and MySQL.
+ #
+ # E.g: restartv
+ #
+ # @since Wednesday, April 17, 2019
+ ##
+function restartv {
+	brew services restart mysql@5.7
+	valet restart
 }
