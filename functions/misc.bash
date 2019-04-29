@@ -410,7 +410,7 @@ function youtube-mp3 {
  #
  # @since Monday, January 14, 2019
  ##
-function clear {
+function empty {
 	if [ '' == "$1" ]; then
 		echo "Clear what: all, downloads, trash, tmp?" && return;
 	fi

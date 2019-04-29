@@ -21,14 +21,13 @@ source ~/.bash/functions/lbf.bash  # Local by Flywheel stuff.
  # @since 5/13/16
  ##
 function x {
-	if ! [ -e "$1" ]; then
+	if ! [ '' = "$1" ]; then
 		eval "$1";
 		echo "Exiting in 3 seconds..."
 		sleep 3
-		exit;
 	fi
 
-	# exit
+	exit;
 }
 
 ###
