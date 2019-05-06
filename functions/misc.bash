@@ -155,41 +155,20 @@ function sphp {
  # E.g.: native "HipChat" "http://hipchat.com"
  ##
 function app {
+	curr_pwd=$(pwd)
 
-	echo "Creating $1 from $2..."
+	cd "$HOME/Applications" || return
+
+	echo "Creating $1 from $2 in ~/Applications/..."
 
 	# Create the native webapp...
 	nativefier -n "$1" -o --insecure "$2" --flash "$3" "$4" "$5" "$6" "$7"
 
-	echo "Cleaning up..."
-
-	# Move the .app it creates and clean up...
-	currentdir="$(pwd)"
-	app="$1"
-	appdir="$currentdir/$app-darwin-x64"
-
-	if [ ! -e "$appdir" ]; then
-		echo "Can't find $appdir"
-		return
-	fi
-
-	# If there's already an app, delete it.
-	if [ -e "$HOME/Applications/$app.app" ]; then
-		echo "Deleting previous $HOME/Applications/$app.app..."
-		trash "$HOME/Applications/$app.app"
-	fi
-
-	# Copy the built app to Applications folder.
-	cd "$appdir" || return
-	cp -Rfa "$app.app" "$HOME/Applications/$app.app"
-
-	# Go back and remove the build dir.
-	cd "$currentdir" || return
-	rm -Rf "$appdir"
-
 	# Open the application!
-	open "$HOME/Applications"
 	echo "Done, opening ~/Applications..."
+	open "$HOME/Applications"
+
+	cd "$curr_pwd" || return
 }
 
 ###
