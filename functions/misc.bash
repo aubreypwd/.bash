@@ -432,7 +432,7 @@ function empty {
  #
  # @since Wednesday, April 3, 2019
  ##
-function pwdc {
+function pwd-copy {
 	pwd | pbcopy
 }
 
@@ -443,7 +443,7 @@ function pwdc {
  #
  # @since Wednesday, April 17, 2019
  ##
-function myup {
+function mysql-up {
 	brew services start mysql@5.7
 }
 
@@ -454,7 +454,7 @@ function myup {
  #
  # @since Wednesday, April 17, 2019
  ##
-function mydown {
+function mysql-down {
 	brew services stop mysql@5.7
 }
 
@@ -465,7 +465,7 @@ function mydown {
  #
  # @since Wednesday, April 17, 2019
  ##
-function myrestart {
+function restart-mysql {
 	brew services restart mysql@5.7
 }
 
@@ -476,7 +476,7 @@ function myrestart {
  #
  # @since Wednesday, April 17, 2019
  ##
-function restartv {
+function restart-local {
 	brew services restart mysql@5.7
 	valet restart
 }
