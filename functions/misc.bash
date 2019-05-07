@@ -480,3 +480,43 @@ function restart-local {
 	brew services restart mysql@5.7
 	valet restart
 }
+
+###
+ # Zip up a Valet site.
+ #
+ # E.g: vale-package folder-name "Notes about stuff"
+ #
+ # @since Tuesday, May 7, 2019
+ ##
+function valet-package {
+	dir="$1"
+
+	zip_dir="$HOME/Valet/$dir"
+
+	date=$(date "+%Y-%m-%d_%H-%M-%S")
+
+	current_dir=$(pwd)
+
+	notes="$2"
+
+	package_dir="$zip_dir/.packages"
+
+	if ! [ -f "$package_dir" ]; then
+		mkdir "$package_dir" &>/dev/null
+	fi
+
+	if [ -f "$zip_dir" ]; then
+		echo "$zip_dir does not exist..."
+		return
+	fi
+
+	zip_file="$package_dir/$date-$notes.zip"
+
+	if [ -f "$zip_file" ]; then
+		trash "$zip_file"
+	fi
+
+	cd "$zip_dir" || return
+	zip -r -q "$zip_file" "./" &>/dev/null
+	cd "$current_dir" || return
+}
