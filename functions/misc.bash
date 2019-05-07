@@ -519,4 +519,6 @@ function valet-package {
 	cd "$zip_dir" || return
 	zip -r -q "$zip_file" "./" &>/dev/null
 	cd "$current_dir" || return
+
+	echo "Done! Created $zip_file on $date"
 }
