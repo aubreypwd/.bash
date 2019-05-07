@@ -61,7 +61,7 @@ function dir {
  #
  # @since Tuesday, April 23, 2019
  ##
-function v {
+function valet {
 	cd "$HOME/Valet" || return
 	site "./"
 }
