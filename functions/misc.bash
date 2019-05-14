@@ -522,3 +522,14 @@ function valet-package {
 
 	echo "Done! Created $zip_file on $date"
 }
+
+###
+ # Add spacer to Dock.
+ #
+ # E.g: dock-add-spacer
+ #
+ # @since Tuesday, May 14, 2019
+ ##
+function dock-add-spacer {
+	defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock
+}

@@ -61,9 +61,9 @@ function dir {
  #
  # @since Tuesday, April 23, 2019
  ##
-function valet {
+function site {
 	cd "$HOME/Valet" || return
-	site "./"
+	_site "./"
 }
 
 ###
@@ -71,7 +71,7 @@ function valet {
  #
  # @since Monday, March 19, 2018
  ##
-function site {
+function _site {
 	dir "$1"
 
 	# Try and go to wp-content...
