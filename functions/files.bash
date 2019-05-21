@@ -136,3 +136,14 @@ function delete {
 function comment {
 	osascript -e 'on run {f, c}' -e 'tell app "Finder" to set comment of (POSIX file f as alias) to c' -e end "$1" "$2" > /dev/null 2>&1
 }
+
+###
+ # Wrapper or aria2c
+ #
+ # E.g: download 12 "http://..."
+ #
+ # @since Tuesday, May 21, 2019
+ ##
+function download {
+	aria2c -x "$1" "$2"
+}
