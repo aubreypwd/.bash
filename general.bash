@@ -29,3 +29,14 @@ export PATH="/usr/local/sbin:$PATH"
 export SVN_EDITOR="vim +startinsert"
 
 PS1="\n$FG_BASE03>$RESET "
+
+###
+ # A growing list of things this setup requires.
+ #
+ # @since Tuesday, May 21, 2019
+ #
+ # E.g: bash-install
+ ##
+function bash-install {
+	brew install aria2c
+}
