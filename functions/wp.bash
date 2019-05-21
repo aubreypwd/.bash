@@ -98,15 +98,21 @@ function wp-db-pass {
 }
 
 ###
- # Export wp db export into a .gz file.
+ # Export wp db export into a .gz file and leave a comment on the file.
  #
  # @since Tuesday, May 21, 2019
  #
- # E.g: wp-export
+ # E.g: wp-export "A comment about the export for Finder."
  ##
-function wp-export {
+function wp-db-export {
+	echo "Exporting SQL..."
 	sqlfile=$(wp db export --porcelain)
+
+	echo "Compressing $sqlfile..."
 	gzip "$sqlfile"
+
+	echo "Adding Comment: $1..."
+	comment "$sqlfile.gz" "$1"
 }
 
 ###
@@ -116,14 +122,13 @@ function wp-export {
  #
  # E.g: wp-import "$file"
  ##
-function wp-import {
+function wp-db-import {
 	echo "Extracting $1..."
 	gunzip "$1"
 
+	echo "Importing $sqlfile..."
 	noext=$(echo "$1" | cut -f 1 -d '.')
 	sqlfile="$noext.sql"
-
-	echo "Importing $sqlfile..."
 	wp db import "$sqlfile"
 
 	echo "Re-compressing $sqlfile > $1"
