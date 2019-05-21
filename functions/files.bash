@@ -125,3 +125,14 @@ function wp-content {
 function delete {
 	rm -Rf "$1"
 }
+
+###
+ # Add comment to a file.
+ #
+ # E.g: comment "file.png" "comment"
+ #
+ # @since Tuesday, May 21, 2019
+ ##
+function comment {
+	osascript -e 'on run {f, c}' -e 'tell app "Finder" to set comment of (POSIX file f as alias) to c' -e end "$1" "$2" > /dev/null 2>&1
+}
