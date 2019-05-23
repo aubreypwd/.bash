@@ -16,3 +16,4 @@ alias tower='gittower'
 alias cu="composer-uninstall"
 alias ci="composer install --prefer-source"
 alias cri="composer-reinstall --prefer-source"
+alias cid="composer install --prefer-dist"
