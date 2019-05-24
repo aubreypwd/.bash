@@ -39,4 +39,20 @@ PS1="\n$FG_BASE03>$RESET "
  ##
 function bash-install {
 	brew install aria2c
+	brew install vifm
+	brew install fzf
+	brew install php@7.1
+	brew install php@7.2
+	brew install php@7.3
+	brew install ffmpeg
+	brew install ack
+	brew install gawk
+	brew install git
+	brew install node
+	brew install slack-cli
+	brew install wp-cli
+	brew install trash
+	brew install subversion
+
+	sudo npm install -g nativefier
 }
