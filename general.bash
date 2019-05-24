@@ -52,6 +52,7 @@ function bash-install {
 	brew install wp-cli
 	brew install trash
 	brew install subversion
+	brew install ranger
 
 	sudo npm install -g nativefier
 }
