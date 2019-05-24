@@ -42,7 +42,7 @@ function dir {
 		echo "$help" && return
 	fi
 
-	where="."
+	where="./"
 	if [ -n "$1" ]; then
 		where=${1%/}
 	fi
@@ -62,12 +62,45 @@ function dir {
  # @since Friday, May 24, 2019
  ##
 function theme {
-	wp-content
+	if [ -e "wp-content" ]; then
+		wp-content
+	fi
 
 	if [ -e "themes" ]; then
 		cd "themes" || return
 		dir ./
 	fi
+}
+
+###
+ # Wrapper for vd
+ #
+ # E.g: vicd || vd
+ #
+ # @since Friday, May 24, 2019
+ ##
+function vicd {
+	vd
+}
+
+###
+ # Visually Navigate Files
+ #
+ # E.g: vicd || vd
+ #
+ # @since Friday, May 24, 2019
+ ##
+function vd {
+	local dst
+
+	dst="$(command vifm --choose-dir - "$@")"
+
+	if [ -z "$dst" ]; then
+		echo "Directory picking cancelled/failed"
+		return 1
+	fi
+
+	cd "$dst" || return
 }
 
 ###
@@ -78,7 +111,9 @@ function theme {
  # @since Friday, May 24, 2019
  ##
 function plugin {
-	wp-content
+	if [ -e "wp-content" ]; then
+		wp-content
+	fi
 
 	if [ -e "plugins" ]; then
 		cd "plugins" || return
