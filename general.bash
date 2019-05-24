@@ -39,7 +39,6 @@ PS1="\n$FG_BASE03>$RESET "
  ##
 function bash-install {
 	brew install aria2c
-	brew install vifm
 	brew install fzf
 	brew install php@7.1
 	brew install php@7.2
