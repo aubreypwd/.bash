@@ -55,23 +55,6 @@ function dir {
 }
 
 ###
- # Jump to a Theme
- #
- # E.g: theme
- #
- # @since Friday, May 24, 2019
- ##
-function theme {
-	if [ -e "themes" ]; then
-		cd "themes" || return
-		dir ./
-	else
-		wp-content
-		theme
-	fi
-}
-
-###
  # Better cd with Ranger support.
  #
  # E.g: cd
@@ -107,6 +90,23 @@ function plugin {
 }
 
 ###
+ # Jump to a Theme
+ #
+ # E.g: theme
+ #
+ # @since Friday, May 24, 2019
+ ##
+function theme {
+	if [ -e "themes" ]; then
+		cd "themes" || return
+		dir ./
+	else
+		wp-content
+		theme
+	fi
+}
+
+###
  # Get to the wp-contet dir.
  #
  # E.g: wp-content
@@ -117,8 +117,7 @@ function wp-content {
 	if [ -e "wp-content" ]; then
 		cd "wp-content" || return
 	else
-		site
-		wp-content
+		site --wp-content
 	fi
 }
 
@@ -131,32 +130,10 @@ function wp-content {
  ##
 function site {
 	cd "$HOME/Valet" || return
-	_site "./"
-}
+	dir ./
 
-###
- # Goto a site.
- #
- # @since Monday, March 19, 2018
- ##
-function _site {
-	dir "$1"
-
-	# Try and go to wp-content...
-	if [ -e "wp-content" ]; then
-		cd "wp-content" || return
-
-		# Try and go to any other path they supply.
-		if [ -e "$1" ]; then
-			cd "$1" || return
-		fi
-
-		return
-	fi
-
-	# Try and go to any other path they supply.
-	if [ -e "$1" ]; then
-		cd "$1" || return
+	if [ '--wp-content' == "$1" ]; then
+		wp-content
 	fi
 }
 
