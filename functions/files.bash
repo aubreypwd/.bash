@@ -55,6 +55,54 @@ function dir {
 }
 
 ###
+ # Jump to a Theme
+ #
+ # E.g: theme
+ #
+ # @since Friday, May 24, 2019
+ ##
+function theme {
+	wp-content
+
+	if [ -e "themes" ]; then
+		cd "themes" || return
+		dir ./
+	fi
+}
+
+###
+ # Jump to a Plugin.
+ #
+ # E.g: plugin
+ #
+ # @since Friday, May 24, 2019
+ ##
+function plugin {
+	wp-content
+
+	if [ -e "plugins" ]; then
+		cd "plugins" || return
+		dir ./
+	fi
+}
+
+###
+ # Get to the wp-contet dir.
+ #
+ # E.g: wp-content
+ #
+ # @since Friday, May 24, 2019
+ ##
+function wp-content {
+	if [ -e "wp-content" ]; then
+		cd "wp-content" || return
+	else
+		site
+		wp-content
+	fi
+}
+
+###
  # Goto a Valet site.
  #
  # E.g: valet
