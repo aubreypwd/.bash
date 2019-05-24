@@ -62,13 +62,12 @@ function dir {
  # @since Friday, May 24, 2019
  ##
 function theme {
-	if [ -e "wp-content" ]; then
-		wp-content
-	fi
-
 	if [ -e "themes" ]; then
 		cd "themes" || return
 		dir ./
+	else
+		wp-content
+		theme
 	fi
 }
 
@@ -98,13 +97,12 @@ function cd {
  # @since Friday, May 24, 2019
  ##
 function plugin {
-	if [ -e "wp-content" ]; then
-		wp-content
-	fi
-
 	if [ -e "plugins" ]; then
 		cd "plugins" || return
 		dir ./
+	else
+		wp-content
+		plugin
 	fi
 }
 
@@ -156,35 +154,10 @@ function _site {
 		return
 	fi
 
-	# Try and go to public folder.
-	if [ -e "app/public" ]; then
-		cd "app/public" || return
-
-		# Try and go to any other path they supply.
-		if [ -e "$1" ]; then
-			cd "$1" || return
-		fi
-
-		return;
+	# Try and go to any other path they supply.
+	if [ -e "$1" ]; then
+		cd "$1" || return
 	fi
-}
-
-###
- # Goto the public/ dir of a site.
- #
- # @since Monday, March 19, 2018
- ##
-function public {
-	site && cd "app/public/" || return
-}
-
-###
- # Get to the wp-content of a site.
- #
- # @since Monday, March 19, 2018
- ##
-function wp-content {
-	public && cd "wp-content" || return
 }
 
 ###
