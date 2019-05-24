@@ -73,34 +73,21 @@ function theme {
 }
 
 ###
- # Wrapper for vd
+ # Better cd with Ranger support.
  #
- # E.g: vicd || vd
- #
- # @since Friday, May 24, 2019
- ##
-function vicd {
-	vd
-}
-
-###
- # Visually Navigate Files
- #
- # E.g: vicd || vd
+ # E.g: cd
  #
  # @since Friday, May 24, 2019
  ##
-function vd {
-	local dst
-
-	dst="$(command vifm --choose-dir - "$@")"
-
-	if [ -z "$dst" ]; then
-		echo "Directory picking cancelled/failed"
-		return 1
+function cd {
+	if [ -n "$1" ]; then
+		builtin cd "$@" || return
+		return
 	fi
 
-	cd "$dst" || return
+	ranger ./ --show-only-dirs --choosedir="$HOME/.rangerdir"
+	LASTDIR=$(cat "$HOME/.rangerdir")
+	cd "$LASTDIR" || return
 }
 
 ###
