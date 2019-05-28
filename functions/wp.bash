@@ -104,7 +104,7 @@ function wp-db-pass {
  #
  # E.g: wp-export "A comment about the export for Finder."
  ##
-function wp-db-export {
+function wp-export-gz {
 	echo "Exporting SQL..."
 	sqlfile=$(wp db export --porcelain)
 
@@ -122,7 +122,7 @@ function wp-db-export {
  #
  # E.g: wp-import "$file"
  ##
-function wp-db-import {
+function wp-import-gz {
 	echo "Extracting $1..."
 	gunzip "$1"
 
