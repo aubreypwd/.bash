@@ -295,7 +295,7 @@ function po2mo {
 
 	# Clean BOM from .po files: https://unix.stackexchange.com/questions/381230/how-can-i-remove-the-bom-from-a-utf-8-file.
 	for f in *.po; do
-		dos2unix "$f" &>/dev/null
+		dos2unix "$f" &> /dev/null
 	done
 
 	# Convert .po to .mo...
@@ -397,7 +397,7 @@ function empty {
 	if [ 'tmp' = "$1" ] || [ 'all' = "$1" ]; then
 
 		echo "Clearing ~/tmp/*..."
-		nohup rm -Rf ~/tmp/* &>/dev/null &> /dev/null
+		nohup rm -Rf ~/tmp/* &> /dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
 			return;
@@ -407,7 +407,7 @@ function empty {
 	if [ 'downloads' = "$1" ] || [ 'all' = "$1" ]; then
 
 		echo "Clearing ~/Downloads/*..."
-		nohup rm -Rf ~/Downloads/* &>/dev/null &> /dev/null
+		nohup rm -Rf ~/Downloads/* &> /dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
 			return;
@@ -417,7 +417,7 @@ function empty {
 	if [ 'trash' = "$1" ] || [ 'all' = "$1" ]; then
 
 		echo "Emptying Trashes..."
-		nohup empty-trash &>/dev/null &> /dev/null
+		nohup empty-trash &> /dev/null &> /dev/null
 
 		if [ 'all' != "$1" ]; then
 			return;
@@ -502,7 +502,7 @@ function valet-package {
 	package_dir="$zip_dir/.packages"
 
 	if ! [ -f "$package_dir" ]; then
-		mkdir "$package_dir" &>/dev/null
+		mkdir "$package_dir" &> /dev/null
 	fi
 
 	if [ -f "$zip_dir" ]; then
@@ -517,7 +517,7 @@ function valet-package {
 	fi
 
 	cd "$zip_dir" || return
-	zip -r -q "$zip_file" "./" &>/dev/null
+	zip -r -q "$zip_file" "./" &> /dev/null
 	cd "$current_dir" || return
 
 	echo "Done! Created $zip_file on $date"
@@ -532,4 +532,54 @@ function valet-package {
  ##
 function dock-add-spacer {
 	defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock
+}
+
+###
+ # Install a build of Sublime.
+ #
+ # E.g: install-sublime [build]
+ #
+ #
+ ##
+function install-sublime {
+	pwd=$(pwd)
+
+	version="$1"
+
+	echo "Installing $version..."
+
+	if [ "" == "$version" ]; then
+		version="3170" # Last stable release.
+	fi
+
+	cd ~/Downloads || return
+
+	dmg="Sublime Text Build $version.dmg"
+
+	rm -f "$dmg" &> /dev/null
+
+	download="https://download.sublimetext.com/Sublime Text Build $version.dmg"
+
+	aria2c -x 3 "$download" &> /dev/null
+
+	if [ ! -e "$dmg" ]; then
+		echo "Can't mount $dmg..."
+		return
+	fi
+
+	echo "Downloading $download..."
+
+	hdiutil attach "$dmg" &> /dev/null
+
+	cd "/Volumes/Sublime Text" || return
+
+	echo "Copying to /Applications..."
+
+	cp -Rfa "/Volumes/Sublime Text/Sublime Text.app" "/Applications" &> /dev/null
+
+	hdiutil detach -force "/Volumes/Sublime Text" &> /dev/null
+
+	cd "$pwd" || return
+
+	echo "Done installing $version of Sublime, you may need to eject the DMG"...
 }
