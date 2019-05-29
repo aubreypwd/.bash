@@ -94,8 +94,10 @@ __powerline() {
         # GIT_SEP="·"
         GIT_SEP=""
 
+        remote=$($git_eng config --get remote.origin.url)
+
         # print the git branch segment without a trailing newline
-        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$FG_MAGENTA$marks "
+        echo "$FG_BASE03$GIT_SEP$FG_BLUE$GIT_BRANCH_SYMBOL$FG_GREEN$branch$FG_MAGENTA $remote$marks "
     }
 
     ps1() {

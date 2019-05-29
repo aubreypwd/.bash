@@ -72,7 +72,7 @@ function wp-make-patch {
 ###
  # A easy way to replace anything using wp search-replace.
  #
- # E.g: wpreplace "foo" "bar"
+ # E.g: wpreplace "foo" "bar" --dbpass "wp_"
  #
  # @since Wednesday, April 17, 2019
  ##
@@ -81,7 +81,7 @@ function wp-db-replace {
 		wp search-replace "$1" "$2" --all-tables
 
 	if [ '--dbpass' == "$3" ]; then
-		wp-db-pass
+		wp-db-pass "$4"
 	fi
 }
 
@@ -93,8 +93,14 @@ function wp-db-replace {
  # @since Wednesday, April 17, 2019
  ##
 function wp-db-pass {
-	echo "Changing all users' passwords to 'password'..." &&
-		wp db query "UPDATE wp_users SET user_pass = '5f4dcc3b5aa765d61d8327deb882cf99';"
+	if [ "" == "$1" ]; then
+		table="wp_users";
+	else
+		table="$1_users"
+	fi
+
+	echo "Changing all users' passwords to 'password'..."
+	wp db query "UPDATE $table SET user_pass = '5f4dcc3b5aa765d61d8327deb882cf99';"
 }
 
 ###
@@ -104,7 +110,7 @@ function wp-db-pass {
  #
  # E.g: wp-export "A comment about the export for Finder."
  ##
-function wp-export-gz {
+function wp-db-export-gz {
 	echo "Exporting SQL..."
 	sqlfile=$(wp db export --porcelain)
 
@@ -122,7 +128,7 @@ function wp-export-gz {
  #
  # E.g: wp-import "$file"
  ##
-function wp-import-gz {
+function wp-db-import-gz {
 	echo "Extracting $1..."
 	gunzip "$1"
 
