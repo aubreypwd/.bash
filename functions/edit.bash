@@ -12,7 +12,7 @@
  # @since Friday, May 11, 2018
  ##
 function edit {
-	subl "$1"
+	vim -n "$1"
 }
 
 ###
@@ -33,19 +33,6 @@ function edit-snippets {
 }
 
 ###
- # Edit these .files.
- #
- # E.g. edit-files
- #
- # @since 12/1/16
- ##
-function edit-files {
-	if [ -s ~/.files ]; then
-		edit ~/.files
-	fi
-}
-
-###
  # Edit's this file.
  #
  # E.g: edit-bash
@@ -57,7 +44,7 @@ function edit-bash {
 	file="$HOME/.bash";
 
 	if [ -e "$file" ]; then
-		edit "$file"
+		subl "$file"
 	else
 		echo "Couldn't find $file"
 	fi
@@ -74,7 +61,7 @@ function edit-hosts {
 	file="/etc/hosts"
 
 	if [ -e "$file" ]; then
-		edit "$file"
+		sudo vim -n "$file"
 	else
 		echo "Couldn't find $file"
 	fi
