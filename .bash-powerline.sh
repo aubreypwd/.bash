@@ -81,15 +81,17 @@ __powerline() {
 
         local marks
 
+        marks=" "
+
         # branch is modified?
-        [ -n "$($git_eng status --porcelain)" ] && marks+=" $FG_MAGENTA$GIT_BRANCH_CHANGED_SYMBOL$RESET"
+        [ -n "$($git_eng status --porcelain)" ] && marks+="$GIT_BRANCH_CHANGED_SYMBOL "
 
         # how many commits local branch is ahead/behind of remote?
         local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
         local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
         local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-        [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
-        [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
+        [ -n "$aheadN" ] && marks+="$GIT_NEED_PUSH_SYMBOL$aheadN "
+        [ -n "$behindN" ] && marks+="$GIT_NEED_PULL_SYMBOL$behindN "
 
         # GIT_SEP="·"
         GIT_SEP=""
@@ -97,7 +99,7 @@ __powerline() {
         remote=$($git_eng config --get remote.origin.url)
 
         # print the git branch segment without a trailing newline
-        echo "$FG_BASE03$GIT_SEP$FG_BLUE$FG_GREEN$branch$FG_MAGENTA $remote$marks\n"
+        echo "$FG_BASE03$GIT_SEP$FG_GREEN$branch$FG_YELLOW$marks$FG_RED$remote$RESET\n"
     }
 
     ps1() {
