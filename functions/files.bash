@@ -14,7 +14,7 @@
  #
  # @since Monday, March 19, 2018
  ##
-function dir-recursive {
+function goto {
 	help="dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]";
 
 	if [ '--help' == "$1" ]; then
@@ -23,14 +23,29 @@ function dir-recursive {
 
 	depth=""
 
+	pwd=$(pwd)
+
+	dir="$1"
+
+	if [ -z "$1" ]; then
+		dir="."
+	fi
+
 	if [ -n "$2" ]; then
 		depth="-maxdepth $2"
 	else
 		depth=""
 	fi
 
-	thedir=$(find "${1:-./}" -path '*/\.*' -prune \
-		-o -type d $depth -print 2> /dev/null | fzf +m) && cd "$thedir" || return
+	cd "$dir" || return
+
+	thedir=$(find . -path ./.git -prune -o -type d $depth -print 2> /dev/null | fzf +m -e)
+
+	if [ -z "$thedir" ]; then
+		cd "$pwd" && return
+	fi
+
+	cd "$thedir" || return
 }
 
 ###
@@ -52,10 +67,10 @@ function dir {
 	fi
 
 	if [ '-R' == "$2" ]; then
-		dirs "." && return
+		goto "." && return
 	fi
 
-	dirs "$where" 1
+	goto "$where" 1
 }
 
 ###
@@ -151,9 +166,10 @@ function wp-content {
  ##
 function site {
 	cd "$HOME/Valet" || return
+
 	dir ./
 
-	if [ '--wp-content' == "$1" ]; then
+	if [ '-c' == "$1" ]; then
 		wp-content
 	fi
 }
