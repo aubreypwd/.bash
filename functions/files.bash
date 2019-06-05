@@ -39,7 +39,7 @@ function goto {
 
 	cd "$dir" || return
 
-	thedir=$(find . -path ./.git -prune -o -type d $depth -print 2> /dev/null | fzf +m -e)
+	thedir=$(find . -path ./.git -prune -o -type d $depth -print 2> /dev/null | fzf +m)
 
 	if [ -z "$thedir" ]; then
 		cd "$pwd" && return
