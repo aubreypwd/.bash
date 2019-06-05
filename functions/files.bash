@@ -14,13 +14,15 @@
  #
  # @since Monday, March 19, 2018
  ##
-function dirs {
+function dir-recursive {
 	help="dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]";
+
 	if [ '--help' == "$1" ]; then
 		echo "$help" && return
 	fi
 
 	depth=""
+
 	if [ -n "$2" ]; then
 		depth="-maxdepth $2"
 	else
@@ -38,20 +40,39 @@ function dirs {
  ##
 function dir {
 	help="dir [+string Folder you want to look at, or pass -R to search recursively (will forgo depth).]"
+
 	if [ '--help' == "$1" ]; then
 		echo "$help" && return
 	fi
 
-	where="./"
+	where="."
+
 	if [ -n "$1" ]; then
 		where=${1%/}
 	fi
 
-	if [ '-R' == "$1" ]; then
+	if [ '-R' == "$2" ]; then
 		dirs "." && return
 	fi
 
 	dirs "$where" 1
+}
+
+###
+ # Easy way to find a directory in current directory.
+ #
+ # E.g: dirf or dirf .
+ ##
+function dirf {
+	where="."
+
+	if [ -n "$1" ]; then
+		where="$1"
+	fi
+
+	echo "$where"
+
+	dir "$where" -R
 }
 
 ###
