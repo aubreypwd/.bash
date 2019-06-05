@@ -164,7 +164,7 @@ function git-put-patch {
  #
  # @since 5/4/16 Re-written to use simple log.
  ##
-function git-log {
+function log {
 	if [ '--help' == "$1" ]; then
 		echo "Usage: git-log [string: Mode <graph>]"
 		return;
@@ -176,7 +176,7 @@ function git-log {
 		if [ "$1" -gt 0 ]; then
 			git log -n "$1" --oneline
 		else
-			let lines=$LINES-10 # Just under the current lines of the window.
+			lines="$LINES-10" # Just under the current lines of the window.
 			git log -n "$lines" --oneline
 		fi
 	fi
